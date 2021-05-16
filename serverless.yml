@@ -1,5 +1,6 @@
 app: todo-list-serverless
 service: api-rest
+org: insopnio34
 
 frameworkVersion: ">=1.1.0"
 
@@ -77,4 +78,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        TableName: ${self:pro:qvider.environment.DYNAMODB_TABLE}
