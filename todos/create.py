@@ -7,7 +7,7 @@ import uuid
 import boto3
 dynamodb = boto3.resource('dynamodb')
 
-#Crea un elemento en la lista
+#Crea un elemento en la lista todo
 def create(event, context):
     data = json.loads(event['body'])
     if 'text' not in data:
@@ -17,7 +17,7 @@ def create(event, context):
     timestamp = str(time.time())
 
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-
+    #item informacion comentario 
     item = {
         'id': str(uuid.uuid1()),
         'text': data['text'],
