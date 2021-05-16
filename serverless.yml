@@ -20,6 +20,12 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
+    - Effect: Allow
+      Action: 
+        - translate:TranslateText
+        - comprehend:DetectDominantLanguage
+      Resource: "*"
+      
 functions:
   create:
     handler: todos/create.create
@@ -60,6 +66,14 @@ functions:
           path: todos/{id}
           method: delete
           cors: true
+          
+  translate:
+    handler: todos/translate.translate
+    events:
+      - http:
+          path: todos/{id}/{idioma}
+          method: get
+          cors: true
 
 resources:
   Resources:
@@ -78,4 +92,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:pro:qvider.environment.DYNAMODB_TABLE}
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
