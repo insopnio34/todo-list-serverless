@@ -7,7 +7,7 @@ import uuid
 import boto3
 dynamodb = boto3.resource('dynamodb')
 
-
+#Crea un elemento en la lista
 def create(event, context):
     data = json.loads(event['body'])
     if 'text' not in data:
