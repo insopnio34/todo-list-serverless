@@ -17,7 +17,7 @@ def create(event, context):
     timestamp = str(time.time())
 
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-    #item informacion
+    #item informacion comentario
     item = {
         'id': str(uuid.uuid1()),
         'text': data['text'],
